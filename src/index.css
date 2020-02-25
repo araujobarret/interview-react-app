@@ -17,3 +17,27 @@
 .boardStack:hover {
   opacity: 0.85;
 }
+
+.boardPiece {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.emptyPiece,
+.red,
+.blue {
+  background-color: #ffffff;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}

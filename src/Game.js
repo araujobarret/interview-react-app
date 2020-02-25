@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import GameService from './GameService';
+import BoardStack from './BoardStack';
 
 const STACK_LENGTH = 7;
 const STACK_HEIGHT = 6;
@@ -20,16 +21,6 @@ export default function Game() {
     Math.floor(Math.random() * 2)
   );
   const [winner, setWinner] = useState(null);
-
-  useEffect(() => {
-    handleAddPiece(0);
-    handleAddPiece(1);
-    handleAddPiece(0);
-    handleAddPiece(1);
-    handleAddPiece(0);
-    handleAddPiece(1);
-    handleAddPiece(0);
-  }, []);
 
   const checkWinner = (player, x, y) => {
     if (gameService.checkWon(stacks, player, x, y)) {
@@ -57,10 +48,12 @@ export default function Game() {
     <div>
       {winner && <div className="message">{`Player ${winner} has won!`}</div>}
       <div className="board">
-        {stacks.map(stack => (
-          <div className="boardStack">
-          {stack.map(s => <div>{s !== ' ' ? s : '# '}</div>)}
-          </div>
+        {stacks.map((st, index) => (
+          <BoardStack 
+            stack={st}
+            index={index}
+            onAddPiece={handleAddPiece}
+          />
         ))}
       </div>
     </div>
